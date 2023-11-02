@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4kh13tr5522g"]
+
+[ext_resource type="Script" path="res://玩家场景/玩家场景.gd" id="1_r4e3i"]
+[ext_resource type="Script" path="res://玩家场景/相机根.gd" id="2_t25un"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3t1kq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nw53c"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2rvgb"]
+
+[node name="玩家场景" type="CharacterBody3D"]
+script = ExtResource("1_r4e3i")
+
+[node name="玩家身体" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_3t1kq")
+
+[node name="玩家头" type="MeshInstance3D" parent="玩家身体"]
+transform = Transform3D(1, 0, 0, 0, 0.434847, 0, 0, 0, 1, 0, 0.566037, -0.542705)
+mesh = SubResource("BoxMesh_nw53c")
+
+[node name="碰撞体" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_2rvgb")
+
+[node name="相机根" type="Node3D" parent="."]
+script = ExtResource("2_t25un")
+
+[node name="玩家相机" type="Camera3D" parent="相机根"]
+transform = Transform3D(1, 0, 0, 0, 0.982248, 0.187587, 0, -0.187587, 0.982248, 0, 2.18882, 4.7031)

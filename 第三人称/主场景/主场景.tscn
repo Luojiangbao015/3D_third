@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://lcl4cb6jg7t1"]
+
+[ext_resource type="PackedScene" uid="uid://b4kh13tr5522g" path="res://玩家场景/玩家场景.tscn" id="1_rwpsf"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cq66m"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_7itym"]
+sky_material = SubResource("ProceduralSkyMaterial_cq66m")
+
+[sub_resource type="Environment" id="Environment_7l4fu"]
+background_mode = 2
+sky = SubResource("Sky_7itym")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5j35r"]
+albedo_color = Color(0.164706, 0.164706, 0.164706, 1)
+
+[node name="主场景" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7l4fu")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(50, 0, 0, 0, 0.1, 0, 0, 0, 50, 0, 0, 0)
+use_collision = true
+material = SubResource("StandardMaterial3D_5j35r")
+
+[node name="玩家场景" parent="." instance=ExtResource("1_rwpsf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0628, 0)
